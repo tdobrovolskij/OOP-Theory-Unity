@@ -4,22 +4,20 @@ using UnityEngine;
 
 public abstract class Vehicle : MonoBehaviour
 {
-    public float speed = 10;
-
-    // Start is called before the first frame update
-    void Start()
+    private float m_horsePower = 1000;
+    // ENCAPSULATION: negative horsePower not allowed
+    protected float horsePower
     {
-        
+        get { return m_horsePower; }
+        set
+        {
+            if (value > 0)
+                m_horsePower = value;
+        }
     }
+    protected float turnSpeed;
+    protected Rigidbody vehicleRb;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public virtual void Move()
-    {
-        
-    }
+    // INHERITANCE: every vehicle moves, but leave implementation to child classes
+    public abstract void Move();
 }
